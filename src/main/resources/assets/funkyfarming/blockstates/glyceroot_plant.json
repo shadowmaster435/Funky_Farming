@@ -1,0 +1,33 @@
+{
+  "variants": {
+    "variants": {
+      "age=0": {
+        "model": "funkyfarming:block/glyceroot_stage0"
+      },
+      "age=1": {
+        "model": "funkyfarming:block/glyceroot_stage1"
+      },
+      "age=2": {
+        "model": "funkyfarming:block/glyceroot_stage2"
+      },
+      "age=3": {
+        "model": "minecraft:block/air"
+      },
+      "age=4": {
+        "model": "minecraft:block/air"
+      },
+      "age=5": {
+        "model": "minecraft:block/air"
+      },
+      "age=6": {
+        "model": "minecraft:block/air"
+      },
+      "age=7": {
+        "model": "minecraft:block/air"
+      },
+      "age=8": {
+        "model": "minecraft:block/air"
+      }
+    }
+    }
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "funkyfarming",
+  "version": "${version}",
+  "name": "Funkyfarming",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/funkyfarming/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "shadowmaster435.funkyfarming.client.FunkyfarmingClient"
+    ],
+    "main": [
+      "shadowmaster435.funkyfarming.Funkyfarming"
+    ]
+  },
+  "mixins": [
+    "funkyfarming.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.8",
+    "fabric": "*",
+    "minecraft": "1.19"
+  }
+}

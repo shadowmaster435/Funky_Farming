@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "moisture=0": {
+      "model": "funkyfarming:block/exotic_farmland"
+    },
+    "moisture=1": {
+      "model": "funkyfarming:block/exotic_farmland"
+    },
+    "moisture=2": {
+      "model": "funkyfarming:block/exotic_farmland"
+    },
+    "moisture=3": {
+      "model": "funkyfarming:block/exotic_farmland"
+    },
+    "moisture=4": {
+      "model": "funkyfarming:block/exotic_farmland"
+    },
+    "moisture=5": {
+      "model": "funkyfarming:block/exotic_farmland"
+    },
+    "moisture=6": {
+      "model": "funkyfarming:block/exotic_farmland"
+    },
+    "moisture=7": {
+      "model": "funkyfarming:block/exotic_farmland_moist"
+    }
+  }
+}

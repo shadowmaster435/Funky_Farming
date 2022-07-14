@@ -1,0 +1,23 @@
+{
+  "voracepick": {
+    "sounds": [
+      "funkyfarming:voracepick1",
+      "funkyfarming:voracepick2"
+
+    ]
+  },
+  "exotic_soil_place": {
+    "sounds": [
+      "funkyfarming:exotic_soil_break1",
+      "funkyfarming:exotic_soil_break2",
+      "funkyfarming:exotic_soil_break3"
+    ]
+  },
+  "exotic_soil_dig": {
+    "sounds": [
+      "funkyfarming:exotic_soil_dig1",
+      "funkyfarming:exotic_soil_dig2",
+      "funkyfarming:exotic_soil_dig3"
+    ]
+  }
+}

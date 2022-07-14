@@ -1,0 +1,90 @@
+{
+  "multipart": [
+    {"apply": {
+      "model": "funkyfarming:block/glyceroot_fuse_center"
+    }
+    },    
+    {
+    "when":
+    {
+      "north": "connected|down"
+    },
+    "apply": {
+      "model": "funkyfarming:block/glyceroot_fuse_limb"
+             }
+    },
+    {
+      "when":
+      {
+        "south": "connected|down"
+      },
+      "apply": {
+        "model": "funkyfarming:block/glyceroot_fuse_limb",
+        "y": 180
+      }
+    },
+    {
+      "when":
+      {
+        "east": "connected|down"
+      },
+      "apply": {
+        "model": "funkyfarming:block/glyceroot_fuse_limb",
+        "y": 90
+
+      }
+    },
+    {
+      "when":
+      {
+        "west": "connected|down"
+      },
+      "apply": {
+        "model": "funkyfarming:block/glyceroot_fuse_limb",
+        "y": 270
+
+      }
+    },
+    {
+      "when":
+      {
+        "north": "up"
+      },
+      "apply": {
+        "model": "funkyfarming:block/glyceroot_fuse_limb_up"
+      }
+    },
+    {
+      "when":
+      {
+        "south": "up"
+      },
+      "apply": {
+        "model": "funkyfarming:block/glyceroot_fuse_limb_up",
+        "y": 180
+      }
+    },
+    {
+      "when":
+      {
+        "east": "up"
+      },
+      "apply": {
+        "model": "funkyfarming:block/glyceroot_fuse_limb_up",
+        "y": 90
+
+      }
+    },
+    {
+      "when":
+      {
+        "west": "up"
+      },
+      "apply": {
+        "model": "funkyfarming:block/glyceroot_fuse_limb_up",
+        "y": 270
+
+      }
+    }
+  ]
+}
