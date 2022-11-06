@@ -4,8 +4,12 @@
   "package": "shadowmaster435.funkyfarming.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "MinecraftClientMixin",
+    "PlayerMixin"
   ],
   "client": [
+    "RenderLayerInvoker",
+    "RenderLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

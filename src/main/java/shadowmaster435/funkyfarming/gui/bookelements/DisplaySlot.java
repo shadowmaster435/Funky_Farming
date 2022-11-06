@@ -32,9 +32,13 @@ public abstract class DisplaySlot  {
         this.itemStack = itemStack;
     }
 
-    public void renderItem(ItemStack stack, int x, int y) {
+    public void render(ItemStack stack, int x, int y) {
         ItemRenderer renderer = MinecraftClient.getInstance().getItemRenderer();
         renderer.renderGuiItemIcon(stack, x, y);
+    }
+
+    public void renderItem(DisplaySlot displaySlot) {
+        render(displaySlot.itemStack, displaySlot.x, displaySlot.y);
     }
 
 }

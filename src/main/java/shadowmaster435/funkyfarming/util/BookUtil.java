@@ -1,27 +1,17 @@
-package shadowmaster435.funkyfarming.gui;
+package shadowmaster435.funkyfarming.util;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import shadowmaster435.funkyfarming.gui.bookelements.Page;
 
-public class GuideBookScreen extends HandledScreen<GuideBookScreenHandler> {
+public class BookUtil {
 
-    public PlayerInventory inventory;
-
-    public GuideBookScreen(GuideBookScreenHandler handler, PlayerInventory inventory, Text title) {
-        super(handler, inventory, title);
-        this.inventory = inventory;
-    }
-
-    @Override
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-
+    public static void render(PlayerInventory inventory) {
+        int mouseX = (int) MinecraftClient.getInstance().mouse.getX();
+        int mouseY = (int) MinecraftClient.getInstance().mouse.getY();
         Page.renderpage(inventory, mouseX, mouseY);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
