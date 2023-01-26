@@ -31,8 +31,8 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.TickPriority;
 import net.minecraft.world.World;
+import net.minecraft.world.tick.TickPriority;
 import org.checkerframework.checker.units.qual.A;
 import org.jetbrains.annotations.Nullable;
 import shadowmaster435.funkyfarming.block.entity.VoracePlantEntity;
@@ -68,7 +68,7 @@ public class VoracePlant extends CropBase implements BlockEntityProvider {
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        world.createAndScheduleBlockTick(pos, this, 1, TickPriority.byIndex(1));
+        world.scheduleBlockTick(pos, this, 1, TickPriority.byIndex(1));
         super.onPlaced(world, pos, state, placer, itemStack);
     }
     public static int fedval = 0;
@@ -94,7 +94,7 @@ public class VoracePlant extends CropBase implements BlockEntityProvider {
 
             }
         }
-        world.createAndScheduleBlockTick(pos, this, 1, TickPriority.byIndex(1));
+        world.scheduleBlockTick(pos, this, 1, TickPriority.byIndex(1));
 
         super.scheduledTick(state, world, pos, random);
     }

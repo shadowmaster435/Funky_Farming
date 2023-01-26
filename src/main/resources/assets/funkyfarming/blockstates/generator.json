@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=true": {
+            "model": "funkyfarming:block/generator_active"
+        },
+    "active=false": {
+            "model": "funkyfarming:block/generator_static"
+        }
+    }
+}

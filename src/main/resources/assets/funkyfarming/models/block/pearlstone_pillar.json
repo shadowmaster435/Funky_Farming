@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "funkyfarming:block/pearlstone",
+    "side": "funkyfarming:block/pearlstone_pillar"
+
+  }
+}

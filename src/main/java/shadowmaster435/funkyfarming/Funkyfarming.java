@@ -1,9 +1,7 @@
 package shadowmaster435.funkyfarming;
 
 import net.fabricmc.api.ModInitializer;
-import shadowmaster435.funkyfarming.init.FFBlocks;
-import shadowmaster435.funkyfarming.init.FFItems;
-import shadowmaster435.funkyfarming.init.FFSounds;
+import shadowmaster435.funkyfarming.init.*;
 
 public class Funkyfarming implements ModInitializer {
     @Override
@@ -13,5 +11,7 @@ public class Funkyfarming implements ModInitializer {
         FFBlocks.registerBlockEntities();
         FFItems.registerItems();
         FFSounds.registerSounds();
+        FFScreens.init();
+        FFTabs.init();
     }
 }

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "funkyfarming:pearlstone",
+    "funkyfarming:pearlstone_pillar",
+    "funkyfarming:gateway_amp",
+    "funkyfarming:gateway",
+    "funkyfarming:generator"
+
+  ]
+}

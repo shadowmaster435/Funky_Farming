@@ -1,6 +1,7 @@
 package shadowmaster435.funkyfarming.mixin;
 
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.RenderPhase;
 import net.minecraft.client.render.VertexFormat;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
@@ -12,9 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(RenderLayer.class)
-public class RenderLayerMixin {
-    @Redirect(method = "", at = @At(value = "INVOKE", target = "La/b/c/Something;doSomething(I)I"))
-    private int injected(Something something, int x) {
-        return x + 3;
+public class RenderLayerMixin extends RenderPhase {
+
+    public RenderLayerMixin(String name, Runnable beginAction, Runnable endAction) {
+        super(name, beginAction, endAction);
     }
 }

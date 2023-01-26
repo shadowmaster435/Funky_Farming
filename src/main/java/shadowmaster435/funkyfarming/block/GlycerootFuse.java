@@ -22,13 +22,13 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.joml.Vector3f;
 import shadowmaster435.funkyfarming.init.FFBlocks;
 import shadowmaster435.funkyfarming.util.FuseSide;
 import shadowmaster435.funkyfarming.util.MiscUtil;
@@ -94,8 +94,8 @@ public class GlycerootFuse extends Block {
                     switch (dir) {
                         case NORTH -> finalshape = VoxelShapes.union(finalshape, VoxelShapes.union(northup, north) );
                         case SOUTH -> finalshape = VoxelShapes.union(finalshape, VoxelShapes.union(southup, south));
-                        case WEST -> finalshape = VoxelShapes.union(finalshape, VoxelShapes.union(eastup, east));
-                        case EAST -> finalshape = VoxelShapes.union(finalshape, VoxelShapes.union(westup, west));
+                        case WEST -> finalshape = VoxelShapes.union(finalshape, VoxelShapes.union(westup, east));
+                        case EAST -> finalshape = VoxelShapes.union(finalshape, VoxelShapes.union(eastup, west));
                     }
                 }
             }
@@ -178,7 +178,7 @@ public class GlycerootFuse extends Block {
                                 world.setBlockState(pos.offset(dir).add(0, -1, 0), world.getBlockState(pos.offset(dir).add(0, -1, 0)).with(getProperty(dir.getOpposite()), FuseSide.UP));
 
 
-                                world.createAndScheduleBlockTick(pos.offset(dir).add(0, -1, 0), this, 1);
+                                world.scheduleBlockTick(pos.offset(dir).add(0, -1, 0), this, 1);
                             }
                         }
                         case 2 -> {
@@ -186,7 +186,7 @@ public class GlycerootFuse extends Block {
 
                                 world.setBlockState(pos, state.with(getProperty(dir), FuseSide.UP));
                                 world.setBlockState(pos.offset(dir).add(0, 1, 0), world.getBlockState(pos.offset(dir).add(0, 1, 0)).with(getProperty(dir.getOpposite()), FuseSide.DOWN));
-                                world.createAndScheduleBlockTick(pos.offset(dir).add(0, 1, 0), this, 1);
+                                world.scheduleBlockTick(pos.offset(dir).add(0, 1, 0), this, 1);
                             }
                         }
                         default -> {
@@ -194,7 +194,7 @@ public class GlycerootFuse extends Block {
 
                                 world.setBlockState(pos, state.with(getProperty(dir), FuseSide.CONNECTED));
                                 world.setBlockState(pos.offset(dir), world.getBlockState(pos.offset(dir)).with(getProperty(dir.getOpposite()), FuseSide.CONNECTED));
-                                world.createAndScheduleBlockTick(pos.offset(dir), this, 1);
+                                world.scheduleBlockTick(pos.offset(dir), this, 1);
                             }
                         }
                     }
@@ -245,7 +245,7 @@ public class GlycerootFuse extends Block {
                     default -> yval = 0;
                 }
                 if (world.getBlockState(pos.offset(dir)).getBlock() == FFBlocks.GLYCEROOT_BLOCK) {
-                    world.createAndScheduleBlockTick(pos.offset(dir), FFBlocks.GLYCEROOT_BLOCK, 1);
+                    world.scheduleBlockTick(pos.offset(dir), FFBlocks.GLYCEROOT_BLOCK, 1);
                     world.setBlockState(pos.offset(dir), FFBlocks.GLYCEROOT_BLOCK.getDefaultState().with(IGNITED, true));
                 }
                 if (world.getBlockState(pos.offset(dir).add(0, yval,0)).getBlock() == this) {
@@ -260,7 +260,7 @@ public class GlycerootFuse extends Block {
                                 world.setBlockState(pos.offset(dir).add(0, -1, 0), world.getBlockState(pos.offset(dir).add(0, -1, 0)).with(IGNITED, true));
 
 
-                                world.createAndScheduleBlockTick(pos.offset(dir).add(0, -1, 0), this, 5);
+                                world.scheduleBlockTick(pos.offset(dir).add(0, -1, 0), this, 5);
                             }
                         }
                         case 2 -> {
@@ -268,7 +268,7 @@ public class GlycerootFuse extends Block {
 
                                 world.setBlockState(pos, world.getBlockState(pos).with(IGNITED, true));
                                 world.setBlockState(pos.offset(dir).add(0, 1, 0), world.getBlockState(pos.offset(dir).add(0, 1, 0)).with(IGNITED, true));
-                                world.createAndScheduleBlockTick(pos.offset(dir).add(0, 1, 0), this, 5);
+                                world.scheduleBlockTick(pos.offset(dir).add(0, 1, 0), this, 5);
                             }
                         }
                         default -> {
@@ -276,8 +276,8 @@ public class GlycerootFuse extends Block {
 
                                 world.setBlockState(pos, world.getBlockState(pos).with(IGNITED, true));
                                 world.setBlockState(pos.offset(dir), world.getBlockState(pos.offset(dir)).with(IGNITED, true));
-                                world.createAndScheduleBlockTick(pos, this, 1);
-                                world.createAndScheduleBlockTick(pos.offset(dir), this, 5);
+                                world.scheduleBlockTick(pos, this, 1);
+                                world.scheduleBlockTick(pos.offset(dir), this, 5);
 
                             }
                         }
@@ -333,8 +333,8 @@ public class GlycerootFuse extends Block {
         super.scheduledTick(state, world, pos, random);
     }
 
-    public static Vec3f getPosOfs(FuseSide y, Direction facing) {
-        Vec3f result = new Vec3f(0,0,0);
+    public static Vector3f getPosOfs(FuseSide y, Direction facing) {
+        Vector3f result = new Vector3f(0,0,0);
         switch (y) {
             case UP -> result.add(0, 1, 0);
             case DOWN -> result.add(0, -1, 0);

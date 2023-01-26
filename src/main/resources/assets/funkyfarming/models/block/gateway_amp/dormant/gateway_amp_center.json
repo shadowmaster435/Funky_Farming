@@ -1,0 +1,19 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "funkyfarming:block/gateway_amp_dormant",
+		"particle": "funkyfarming:block/gateway_amp_particle"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 2],
+			"to": [14, 16, 14],
+			"faces": {
+				"north": {"uv": [4.5, 4, 7.5, 8], "texture": "#0"},
+				"east": {"uv": [4.5, 4, 7.5, 8], "texture": "#0"},
+				"south": {"uv": [4.5, 4, 7.5, 8], "texture": "#0"},
+				"west": {"uv": [4.5, 4, 7.5, 8], "texture": "#0"}
+			}
+		}
+	]
+}

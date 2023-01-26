@@ -13,11 +13,26 @@
       "funkyfarming:exotic_soil_break3"
     ]
   },
+
   "exotic_soil_dig": {
     "sounds": [
       "funkyfarming:exotic_soil_dig1",
       "funkyfarming:exotic_soil_dig2",
       "funkyfarming:exotic_soil_dig3"
+    ]
+  },
+  "pearlstone_dig": {
+    "sounds": [
+      "funkyfarming:pearlstone_dig_1",
+      "funkyfarming:pearlstone_dig_2",
+      "funkyfarming:pearlstone_dig_3"
+    ]
+  },
+  "pearlstone_place": {
+    "sounds": [
+      "funkyfarming:pearlstone_break_1",
+      "funkyfarming:pearlstone_break_2",
+      "funkyfarming:pearlstone_break_3"
     ]
   }
 }

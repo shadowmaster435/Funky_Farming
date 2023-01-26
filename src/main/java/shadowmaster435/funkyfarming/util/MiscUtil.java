@@ -15,6 +15,11 @@ import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class MiscUtil {
 
     public static BlockHitResult getBlockHitResult(World world, LivingEntity placer) {
@@ -30,6 +35,8 @@ public class MiscUtil {
     public static RaycastContext getRaycastContext(World world, LivingEntity placer) {
         return new RaycastContext(placer.getEyePos(), placer.raycast(4, MinecraftClient.getInstance().getTickDelta(), false).getPos(), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, placer);
     }
+
+
 
     public static int RandomIntseed(Random random, int mult) {
         return random.nextInt() * mult;
@@ -60,5 +67,19 @@ public class MiscUtil {
 
     public static float RandomFloat(float mult) {
         return (float) (Math.random()) * mult;
+    }
+
+    public static <T> List<T> Arraytolist(T[] array) {
+        List<T> list = new ArrayList<>();
+        Collections.addAll(list, array);
+        return list;
+    }
+    public static List<Integer> IntArraytolist(int[] array) {
+        List<Integer> list = new ArrayList<>();
+        System.out.println(Arrays.toString(array));
+        for (int i : array) {
+            list.add(i);
+        }
+        return list;
     }
 }

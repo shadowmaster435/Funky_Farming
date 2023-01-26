@@ -9,6 +9,7 @@ import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 import shadowmaster435.funkyfarming.init.FFBlocks;
 import shadowmaster435.funkyfarming.init.FFScreens;
+//import shadowmaster435.funkyfarming.init.FFScreens;
 
 @Environment(EnvType.CLIENT)
 public class FunkyfarmingClient implements ClientModInitializer {
@@ -16,8 +17,9 @@ public class FunkyfarmingClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        FFScreens.initclient();
+        FFScreens.initClient();
         FFBlocks.registerBlockLayerTypes();
+        FFBlocks.registerRenderers();
         keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.examplemod.spook", // The translation key of the keybinding's name
                 InputUtil.Type.MOUSE, // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.

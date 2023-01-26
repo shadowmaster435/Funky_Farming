@@ -46,7 +46,7 @@ public class GlycerootBlock extends Block {
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        world.createAndScheduleBlockTick(pos, this, 1);
+        world.scheduleBlockTick(pos, this, 1);
         super.onPlaced(world, pos, state, placer, itemStack);
     }
 
@@ -58,7 +58,7 @@ public class GlycerootBlock extends Block {
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (world.getBlockState(pos).get(IGNITED))  {
-            world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 4, Explosion.DestructionType.BREAK);
+            world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 4, World.ExplosionSourceType.BLOCK);
 
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         }
@@ -71,7 +71,7 @@ public class GlycerootBlock extends Block {
                 }
             }
         }*/
-        world.createAndScheduleBlockTick(pos, this, 1);
+        world.scheduleBlockTick(pos, this, 1);
 
         super.scheduledTick(state, world, pos, random);
     }

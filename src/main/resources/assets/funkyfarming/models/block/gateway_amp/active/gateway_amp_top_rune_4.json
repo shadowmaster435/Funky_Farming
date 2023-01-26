@@ -1,0 +1,16 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "funkyfarming:block/gateway_amp_active",
+		"particle": "funkyfarming:block/gateway_amp_particle"
+	},
+	"elements": [
+		{
+			"from": [3.98, 1.98, 2],
+			"to": [12.02, 10.02, 2],
+			"faces": {
+				"north": {"uv": [2.25, 10.25, 4.25, 12.25], "texture": "#0"}
+			}
+		}
+	]
+}

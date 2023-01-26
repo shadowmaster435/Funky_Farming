@@ -1,4 +1,20 @@
 {
   "item.funkyfarming.vorace_bulb": "Vorace Bulb",
-  "item.funkyfarming.vorace_plant": "Vorace Seeds"
+  "item.funkyfarming.vorace_plant": "Vorace Seeds",
+  "item.funkyfarming.linker": "Pylon Linker",
+
+  "block.funkyfarming.generator": "Generator",
+  "block.funkyfarming.pearlstone": "Pearlstone",
+  "block.funkyfarming.pearlstone_pillar": "Pearled Pearlstone",
+  "block.funkyfarming.pylon": "Pylon",
+  "block.funkyfarming.gateway": "Gateway Former",
+  "block.funkyfarming.mechalilly": "Mechalilly",
+  "block.funkyfarming.exotic_soil": "Exotic Soil",
+  "block.funkyfarming.exotic_farmland": "Exotic Farmland",
+  "block.funkyfarming.glyceroot_block": "Glyceroot",
+  "block.funkyfarming.glyceroot_fuse": "Glyceroot Fuse",
+
+  "itemGroup.funkyfarming.blocks": "Funky Farming Blocks",
+  "itemGroup.funkyfarming.items": "Funky Farming Items"
+
 }

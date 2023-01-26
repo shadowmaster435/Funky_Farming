@@ -1,0 +1,400 @@
+{
+  "multipart": [
+
+    {
+      "when":
+      {
+
+        "pearled": true,
+        "active": true
+      },
+      "apply": {
+        "model": "funkyfarming:block/gateway_amp/active/gateway_amp_pearl"
+      }
+    },
+    {
+      "when":
+      {
+
+        "pearled": true,
+        "active": false
+      },
+      "apply": {
+        "model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_pearl"
+      }
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "bottom",
+        "pearled": false
+      },
+      "apply": {
+        "model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom"
+      }
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "bottom",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_1"},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_2"},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_3"}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_4"}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "bottom",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_1", "y":  90},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_2", "y":  90},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_3", "y":  90}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_4", "y":  90}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "bottom",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_1", "y":  180},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_2", "y":  180},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_3", "y":  180}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_4", "y":  180}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "bottom",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_1", "y":  270},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_2", "y":  270},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_3", "y":  270}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_bottom_rune_4", "y":  270}
+      ]
+    },
+
+
+
+
+    {
+      "when":
+      {
+        "active": false,
+        "part": "top",
+        "pearled": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top"
+      }
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "top",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_1"},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_2"},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_3"}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_4"}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "top",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_1", "y":  90},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_2", "y":  90},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_3", "y":  90}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_4", "y":  90}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "top",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_1", "y":  180},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_2", "y":  180},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_3", "y":  180}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_4", "y":  180}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "top",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_1", "y":  270},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_2", "y":  270},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_3", "y":  270}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_top_rune_4", "y":  270}
+      ]
+    },
+
+
+
+    {
+      "when":
+      {
+        "active": false,
+        "part": "center",
+        "pearled": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center"
+      }
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "center",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_1"},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_2"},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_3"}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_4"}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "center",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_1", "y":  90},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_2", "y":  90},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_3", "y":  90}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_4", "y":  90}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "center",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_1", "y":  180},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_2", "y":  180},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_3", "y":  180}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_4", "y":  180}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": false,
+        "part": "center",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_1", "y":  270},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_2", "y":  270},{"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_3", "y":  270}, {"model": "funkyfarming:block/gateway_amp/dormant/gateway_amp_center_rune_4", "y":  270}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "bottom",
+        "pearled": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom"
+      }
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "bottom",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_1"},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_2"},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_3"}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_4"}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "bottom",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_1", "y":  90},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_2", "y":  90},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_3", "y":  90}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_4", "y":  90}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "bottom",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_1", "y":  180},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_2", "y":  180},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_3", "y":  180}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_4", "y":  180}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "bottom",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_1", "y":  270},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_2", "y":  270},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_3", "y":  270}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_bottom_rune_4", "y":  270}
+      ]
+    },
+
+
+
+
+    {
+      "when":
+      {
+        "active": true,
+        "part": "top",
+        "pearled": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/gateway_amp/active/gateway_amp_top"
+      }
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "top",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_1"},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_2"},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_3"}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_4"}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "top",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_1", "y":  90},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_2", "y":  90},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_3", "y":  90}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_4", "y":  90}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "top",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_1", "y":  180},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_2", "y":  180},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_3", "y":  180}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_4", "y":  180}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "top",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_1", "y":  270},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_2", "y":  270},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_3", "y":  270}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_top_rune_4", "y":  270}
+      ]
+    },
+
+
+
+    {
+      "when":
+      {
+        "active": true,
+        "part": "center",
+        "pearled": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/gateway_amp/active/gateway_amp_center"
+      }
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "center",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_1"},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_2"},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_3"}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_4"}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "center",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_1", "y":  90},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_2", "y":  90},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_3", "y":  90}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_4", "y":  90}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "center",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_1", "y":  180},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_2", "y":  180},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_3", "y":  180}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_4", "y":  180}
+      ]
+    },
+    {
+      "when":
+      {
+        "active": true,
+        "part": "center",
+        "pearled": false
+
+      },
+      "apply":[
+        {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_1", "y":  270},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_2", "y":  270},{"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_3", "y":  270}, {"model": "funkyfarming:block/gateway_amp/active/gateway_amp_center_rune_4", "y":  270}
+      ]
+    }
+  ]
+}
