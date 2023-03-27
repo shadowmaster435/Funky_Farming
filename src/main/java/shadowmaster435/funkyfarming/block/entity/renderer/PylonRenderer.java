@@ -7,14 +7,11 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.*;
-import org.joml.Vector3d;
 import org.joml.Vector3f;
-import org.joml.Vector4f;
 import shadowmaster435.funkyfarming.block.Pylon;
 import shadowmaster435.funkyfarming.block.entity.PylonEntity;
 import shadowmaster435.funkyfarming.init.FFBlocks;
-import shadowmaster435.funkyfarming.init.FFShaders;
-import shadowmaster435.funkyfarming.util.*;
+import shadowmaster435.funkyfarming.rendering.QuadGrid;
 
 public class PylonRenderer implements BlockEntityRenderer<PylonEntity> {
 

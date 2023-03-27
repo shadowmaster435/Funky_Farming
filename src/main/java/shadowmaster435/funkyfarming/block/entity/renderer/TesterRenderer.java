@@ -1,12 +1,10 @@
 package shadowmaster435.funkyfarming.block.entity.renderer;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.block.Block;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.client.util.math.Vector2f;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -17,13 +15,9 @@ import org.joml.Vector3f;
 import org.joml.Vector4f;
 import shadowmaster435.funkyfarming.block.entity.TesterBlockEntity;
 import shadowmaster435.funkyfarming.init.FFBlocks;
-import shadowmaster435.funkyfarming.rendering.CTQuad;
-import shadowmaster435.funkyfarming.rendering.QuadStrip;
 import shadowmaster435.funkyfarming.util.ExtendedDirection;
-import shadowmaster435.funkyfarming.util.QuadGrid;
+import shadowmaster435.funkyfarming.rendering.QuadGrid;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class TesterRenderer implements BlockEntityRenderer<TesterBlockEntity> {

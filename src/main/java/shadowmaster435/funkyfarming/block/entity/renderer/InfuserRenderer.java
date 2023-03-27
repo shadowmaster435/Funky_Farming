@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
-import net.minecraft.util.math.Vec3d;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 import shadowmaster435.funkyfarming.animation.Animation;
@@ -18,12 +17,10 @@ import shadowmaster435.funkyfarming.animation.Easing;
 import shadowmaster435.funkyfarming.animation.Keyframe;
 import shadowmaster435.funkyfarming.block.entity.InfuserEntity;
 import shadowmaster435.funkyfarming.rendering.QuadStrip;
-import shadowmaster435.funkyfarming.util.QuadGrid;
 import shadowmaster435.funkyfarming.util.ScrollableList;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class InfuserRenderer implements BlockEntityRenderer<InfuserEntity> {
 

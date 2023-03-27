@@ -8,8 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import shadowmaster435.funkyfarming.rendering.RenderUtil;
-import shadowmaster435.funkyfarming.util.MiscUtil;
-import shadowmaster435.funkyfarming.util.QuadGrid;
+import shadowmaster435.funkyfarming.rendering.QuadGrid;
 
 @Mixin(WorldRenderer.class)
 public class WorldRendererMixin {

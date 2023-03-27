@@ -9,7 +9,6 @@ import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RotationAxis;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.noise.PerlinNoiseSampler;
 import net.minecraft.util.math.random.Random;
 import org.apache.commons.codec.DecoderException;
@@ -19,7 +18,7 @@ import shadowmaster435.funkyfarming.animation.Easing;
 import shadowmaster435.funkyfarming.animation.Keyframe;
 import shadowmaster435.funkyfarming.block.entity.InfusionPedestalEntity;
 import shadowmaster435.funkyfarming.rendering.DynamicTexture;
-import shadowmaster435.funkyfarming.util.QuadGrid;
+import shadowmaster435.funkyfarming.rendering.QuadGrid;
 
 import java.util.Objects;
 

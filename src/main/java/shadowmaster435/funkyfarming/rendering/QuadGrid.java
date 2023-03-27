@@ -1,26 +1,19 @@
-package shadowmaster435.funkyfarming.util;
+package shadowmaster435.funkyfarming.rendering;
 
-import com.google.common.collect.ImmutableList;
-import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector2f;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.*;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.RaycastContext;
-import net.minecraft.world.World;
-import org.joml.Matrix4f;
 import org.joml.Vector2i;
 import org.joml.Vector3f;
-import shadowmaster435.funkyfarming.rendering.SpecialQuad;
+import shadowmaster435.funkyfarming.util.MathUtil;
+import shadowmaster435.funkyfarming.util.MiscUtil;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 

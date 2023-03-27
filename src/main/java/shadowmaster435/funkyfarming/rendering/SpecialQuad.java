@@ -9,7 +9,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import org.joml.*;
 import shadowmaster435.funkyfarming.util.MiscUtil;
-import shadowmaster435.funkyfarming.util.QuadGrid;
 
 import java.util.ArrayList;
 import java.util.List;
