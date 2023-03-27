@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "funkyfarming:block/copper_tube",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "funkyfarming:block/copper_tube"
+    },
+    "axis=z": {
+      "model": "funkyfarming:block/copper_tube",
+      "x": 90
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WRW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "tag": "minecraft:stone"
+    },
+    "R": {
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "result": {
+    "item": "funkyfarming:pearlstone",
+    "count": 4
+  }
+}

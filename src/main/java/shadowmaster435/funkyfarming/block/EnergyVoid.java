@@ -23,7 +23,7 @@ public class EnergyVoid extends BlockWithEntity {
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         EnergyVoidEntity entity = (EnergyVoidEntity) world.getBlockEntity(pos);
         assert entity != null;
-        GravitySphere.spheres.remove(entity.getSphere());
+   //     GravitySphere.spheres.remove(entity.getSphere());
         super.onBreak(world, pos, state, player);
     }
 

@@ -62,15 +62,7 @@ public class GlycerootBlock extends Block {
 
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         }
-       /* for(Direction dir : Direction.values()) {
-            if (dir.getAxis().isHorizontal()) {
-                if (world.getBlockState(pos.offset(dir)).getBlock() == FFBlocks.GLYCEROOT_FUSE && world.getBlockState(pos.offset(dir)).get(IGNITED)) {
-                    world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 4, Explosion.DestructionType.BREAK);
 
-                    world.setBlockState(pos, Blocks.AIR.getDefaultState());
-                }
-            }
-        }*/
         world.scheduleBlockTick(pos, this, 1);
 
         super.scheduledTick(state, world, pos, random);

@@ -6,6 +6,13 @@
 
     ]
   },
+  "drip": {
+    "sounds": [
+      "funkyfarming:drip1",
+      "funkyfarming:drip2"
+
+    ]
+  },
   "exotic_soil_place": {
     "sounds": [
       "funkyfarming:exotic_soil_break1",
@@ -21,6 +28,30 @@
       "funkyfarming:exotic_soil_dig3"
     ]
   },
+
+  "metal_place": {
+    "sounds": [
+      "funkyfarming:metalbreak1",
+      "funkyfarming:metalbreak2",
+      "funkyfarming:metalbreak3"
+
+    ]
+  },
+
+  "metal_dig": {
+    "sounds": [
+      "funkyfarming:metalhit1",
+      "funkyfarming:metalhit2",
+      "funkyfarming:metalhit3"
+    ]
+  },
+  "metal_step": {
+    "sounds": [
+      "funkyfarming:metalhit1",
+      "funkyfarming:metalhit2",
+      "funkyfarming:metalhit3"
+    ]
+  },
   "pearlstone_dig": {
     "sounds": [
       "funkyfarming:pearlstone_dig_1",
@@ -34,5 +65,22 @@
       "funkyfarming:pearlstone_break_2",
       "funkyfarming:pearlstone_break_3"
     ]
+  },
+  "slagate_dig": {
+    "sounds": [
+      "funkyfarming:slagate_dig_1",
+      "funkyfarming:slagate_dig_2",
+      "funkyfarming:slagate_dig_3"
+    ]
+  },
+  "slagate_place": {
+    "sounds": [
+      "funkyfarming:slagate_break_1",
+      "funkyfarming:slagate_break_2",
+      "funkyfarming:slagate_break_3",
+      "funkyfarming:slagate_break_4"
+
+    ]
   }
+
 }

@@ -8,7 +8,6 @@ import shadowmaster435.funkyfarming.block.VoracePlant;
 import shadowmaster435.funkyfarming.init.FFBlocks;
 
 public class RiftRushEntity extends BlockEntity {
-    public int fedval = 0;
 
     public RiftRushEntity(BlockPos pos, BlockState state) {
         super(FFBlocks.VORACE_PLANT_ENTITY, pos, state);

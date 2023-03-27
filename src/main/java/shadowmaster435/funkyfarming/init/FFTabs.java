@@ -3,9 +3,7 @@ package shadowmaster435.funkyfarming.init;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 
 public class FFTabs {
@@ -28,12 +26,31 @@ public class FFTabs {
             content.add(FFBlocks.PYLON);
             content.add(FFBlocks.PEARLSTONE);
             content.add(FFBlocks.PEARLSTONE_PILLAR);
+            content.add(FFBlocks.GATEWAY);
+            content.add(FFBlocks.SLAGATE);
+            content.add(FFBlocks.SCRAP_SOIL);
+            content.add(FFBlocks.STALAGPIPE);
+            content.add(FFBlocks.COPPER_TUBE);
+            content.add(FFBlocks.MEDUIM_COPPER_TUBE);
+            content.add(FFBlocks.SMALL_COPPER_TUBE);
+            content.add(FFBlocks.WORKTABLE);
+            content.add(FFBlocks.FLORALITE_ORE);
+            content.add(FFBlocks.INFUSER);
+            content.add(FFBlocks.INFUSION_PEDASTAL);
+            content.add(FFBlocks.SHEARUELLIA);
+            content.add(FFBlocks.ERODAISY);
 
         });
 
         ItemGroupEvents.modifyEntriesEvent(ITEMS).register(content -> {
             content.add(FFItems.VORACE_BULB);
             content.add(FFItems.LINKER);
+            content.add(FFItems.FLORALITE);
+            content.add(FFItems.SIMPLE_ROTOR);
+            content.add(FFItems.IRON_GEAR);
+            content.add(FFItems.COPPER_GEAR);
+            content.add(FFItems.VERDURIUM_INGOT);
+            content.add(FFItems.CONFLAGRITE);
 
         });
     }

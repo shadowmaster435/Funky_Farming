@@ -114,7 +114,8 @@ public class GeneratorEntity extends BlockEntity implements ExtendedScreenHandle
         return createNbt();
     }
     public static void tick(World world, BlockPos pos, BlockState state, GeneratorEntity be) {
-        if(!world.isClient && world.getBlockState(pos.offset(Direction.Axis.Y, -1)).getBlock() == FFBlocks.MECHALILLY) {
+        boolean nullCheck = (!world.isClient && world.getBlockState(pos.offset(Direction.Axis.Y, -1)).getBlock() == FFBlocks.MECHALILLY);
+        if (nullCheck) {
             if (be.propertyDelegate.get(0) < 31) {
                 be.propertyDelegate.set(0, be.propertyDelegate.get(0) + 1);
 

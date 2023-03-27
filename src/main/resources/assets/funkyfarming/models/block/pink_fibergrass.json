@@ -1,0 +1,8 @@
+{
+ "parent": "block/block",
+    "textures": {
+        "bottom": "funky_farming:block/slag_dirt",
+        "top": "funky_farming:block/pink_fibergrass_top",
+        "side": "funky_farming:block/pink_fibergrass"
+    }
+}

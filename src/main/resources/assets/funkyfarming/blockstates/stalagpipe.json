@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "outlet=true": {
+            "model": "funkyfarming:block/stalagpipe_outlet"
+        },
+    "outlet=false": {
+            "model": "funkyfarming:block/stalagpipe"
+        }
+    }
+}

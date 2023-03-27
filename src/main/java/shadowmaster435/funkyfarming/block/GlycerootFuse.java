@@ -17,7 +17,6 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -31,7 +30,6 @@ import net.minecraft.world.WorldAccess;
 import org.joml.Vector3f;
 import shadowmaster435.funkyfarming.init.FFBlocks;
 import shadowmaster435.funkyfarming.util.FuseSide;
-import shadowmaster435.funkyfarming.util.MiscUtil;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -81,7 +79,11 @@ public class GlycerootFuse extends Block {
         VoxelShape finalshape = center;
         for (Direction dir : Direction.values()) {
             if (world.getBlockState(pos).getBlock() == this) {
-                if (dir.getAxis().isHorizontal() && (world.getBlockState(pos).get(getProperty(dir)) == FuseSide.CONNECTED || world.getBlockState(pos).get(getProperty(dir)) == FuseSide.DOWN)) {
+                boolean horizontal = dir.getAxis().isHorizontal();
+                boolean sideConnected = (world.getBlockState(pos).get(getProperty(dir)) == FuseSide.CONNECTED);
+                boolean sideConnectedDownward = world.getBlockState(pos).get(getProperty(dir)) == FuseSide.DOWN;
+                boolean sideConnectedUpward = world.getBlockState(pos).get(getProperty(dir)) == FuseSide.UP;
+                if (horizontal && (sideConnected || sideConnectedDownward)) {
                     switch (dir) {
                         case NORTH -> finalshape =  VoxelShapes.union(finalshape, north);
                         case SOUTH -> finalshape =  VoxelShapes.union(finalshape, south);
@@ -90,7 +92,7 @@ public class GlycerootFuse extends Block {
                     }
                 }
 
-                if (dir.getAxis().isHorizontal() && world.getBlockState(pos).get(getProperty(dir)) == FuseSide.UP) {
+                if (horizontal && sideConnectedUpward) {
                     switch (dir) {
                         case NORTH -> finalshape = VoxelShapes.union(finalshape, VoxelShapes.union(northup, north) );
                         case SOUTH -> finalshape = VoxelShapes.union(finalshape, VoxelShapes.union(southup, south));
@@ -150,62 +152,65 @@ public class GlycerootFuse extends Block {
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         super.onPlaced(world, pos, state, placer, itemStack);
         world.setBlockState(pos, this.getDefaultState());
-        this.updateState(world,pos,state);
+        this.updateState(world,pos);
     }
     
-    public void updateState(World world, BlockPos pos, BlockState state1) {
+    public void updateState(World world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
-
-
         for (Direction dir : Direction.values()) {
             for (int i = 0; i < 3; ++i) {
-
                 int yval;
                 switch (i) {
                     case 1 -> yval = -1;
                     case 2 -> yval = 1;
                     default -> yval = 0;
                 }
-                if (world.getBlockState(pos.offset(dir).add(0, yval,0)).getBlock() == this) {
-                    FuseSide yaxis;
-
-                    switch (i) {
-                        //Set Ignited state based on if a required block is found
+                if (world.getBlockState(pos.offset(dir).add(0, yval, 0)).getBlock() == this) {
+                    FuseSide side;
+                    FuseSide oppositeSide;
+                    switch (yval) {
                         case 1 -> {
-
-                            if (world.getBlockState(pos.offset(dir).add(0, -1, 0)).getBlock() == this  && world.getBlockState(pos.offset(dir)).getBlock() == Blocks.AIR) {
-                                world.setBlockState(pos, state.with(getProperty(dir), FuseSide.DOWN));
-                                world.setBlockState(pos.offset(dir).add(0, -1, 0), world.getBlockState(pos.offset(dir).add(0, -1, 0)).with(getProperty(dir.getOpposite()), FuseSide.UP));
-
-
-                                world.scheduleBlockTick(pos.offset(dir).add(0, -1, 0), this, 1);
-                            }
+                            side = FuseSide.UP;
+                            oppositeSide = FuseSide.DOWN;
                         }
-                        case 2 -> {
-                            if (world.getBlockState(pos.offset(dir).add(0, 1, 0)).getBlock() == this && world.getBlockState(pos.offset(Direction.UP)).getBlock() == Blocks.AIR) {
-
-                                world.setBlockState(pos, state.with(getProperty(dir), FuseSide.UP));
-                                world.setBlockState(pos.offset(dir).add(0, 1, 0), world.getBlockState(pos.offset(dir).add(0, 1, 0)).with(getProperty(dir.getOpposite()), FuseSide.DOWN));
-                                world.scheduleBlockTick(pos.offset(dir).add(0, 1, 0), this, 1);
-                            }
+                        case -1 -> {
+                            side = FuseSide.DOWN;
+                            oppositeSide = FuseSide.UP;
                         }
                         default -> {
-                            if (world.getBlockState(pos.offset(dir)).getBlock() == this || world.getBlockState(pos.offset(dir)).getBlock() == FFBlocks.GLYCEROOT_BLOCK) {
-
-                                world.setBlockState(pos, state.with(getProperty(dir), FuseSide.CONNECTED));
-                                world.setBlockState(pos.offset(dir), world.getBlockState(pos.offset(dir)).with(getProperty(dir.getOpposite()), FuseSide.CONNECTED));
-                                world.scheduleBlockTick(pos.offset(dir), this, 1);
-                            }
+                            side = FuseSide.CONNECTED;
+                            oppositeSide = FuseSide.CONNECTED;
                         }
                     }
-                } else {
-                    if (i == 2 && world.getBlockState(pos).get(WEST) == FuseSide.UP && world.getBlockState(pos.add(-1, 1, 0)).getBlock() != this) {
-                        world.setBlockState(pos, this.getDefaultState());
+                    BlockPos offsetPos = pos.offset(dir).add(0, yval, 0);
+                    BlockState newOffsetState = world.getBlockState(offsetPos).with(getProperty(dir.getOpposite()), oppositeSide);
+                    BlockState newState = state.with(getProperty(dir), side);
+                    boolean validBlock = !(newOffsetState.getBlock() == FFBlocks.GLYCEROOT_BLOCK) || world.getBlockState(offsetPos).getBlock() == this;
+                    if (yval != 0 && validBlock) {
+                        world.setBlockState(pos, newState);
+                    } else {
+                        if (validBlock) {
+                            world.setBlockState(offsetPos, newOffsetState);
+                        }
+                    }
+                    world.scheduleBlockTick(offsetPos, this, 1);
+                } else  {
+                    // Fix for weird bug
+                        if (i == 2 && world.getBlockState(pos).get(WEST) == FuseSide.DOWN && world.getBlockState(pos.add(-1, -1, 0)).getBlock() != this) {
+                            world.setBlockState(pos, state);
+                        } else {
+                            BlockPos offsetPos = pos.offset(dir).add(0, -1, 0);
+                            if (world.getBlockState(offsetPos).getBlock() == this) {
+                                world.setBlockState(pos, world.getBlockState(pos).with(getProperty(dir), FuseSide.DOWN));
+
+                                world.setBlockState(offsetPos, world.getBlockState(offsetPos).with(getProperty(dir.getOpposite()), FuseSide.UP));
+                            }
+
+                        }
                     }
                 }
             }
         }
-    }
 
     @Override
     public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
@@ -223,7 +228,6 @@ public class GlycerootFuse extends Block {
                         case 1 -> world.setBlockState(pos.offset(dir).add(0, -1, 0), world.getBlockState(pos.offset(dir).add(0, -1, 0)).with(getProperty(dir.getOpposite()), FuseSide.NONE), 1);
                         case 2 -> world.setBlockState(pos.offset(dir).add(0, 1, 0), world.getBlockState(pos.offset(dir).add(0, 1, 0)).with(getProperty(dir.getOpposite()), FuseSide.NONE), 1);
                         default -> world.setBlockState(pos.offset(dir), world.getBlockState(pos.offset(dir)).with(getProperty(dir.getOpposite()), FuseSide.NONE), 1);
-
                     }
                 }
             }
@@ -328,7 +332,7 @@ public class GlycerootFuse extends Block {
                 this.burntimeup = true;
             }
         } else {
-            this.updateState(world, pos, state);
+            this.updateState(world, pos);
         }
         super.scheduledTick(state, world, pos, random);
     }

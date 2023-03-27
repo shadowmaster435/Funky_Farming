@@ -4,7 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
@@ -15,7 +14,7 @@ import org.joml.Vector3f;
 import org.joml.Vector4f;
 import shadowmaster435.funkyfarming.block.entity.GatewayEntity;
 import shadowmaster435.funkyfarming.block.entity.model.GatewayModel;
-import shadowmaster435.funkyfarming.util.RenderUtil;
+import shadowmaster435.funkyfarming.rendering.RenderUtil;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoBlockRenderer;
 
@@ -44,13 +43,13 @@ public class GatewayRenderer extends GeoBlockRenderer<GatewayEntity> {
 
     @Override
     public void postRender(MatrixStack matrices, GatewayEntity entity, BakedGeoModel model, VertexConsumerProvider vertexConsumers, VertexConsumer buffer, boolean isReRender, float tickDelta, int light, int overlay, float red, float green, float blue, float alpha) {
+        VertexConsumer vertexConsumerquad = vertexConsumers.getBuffer(RenderLayer.getSolid());
+        Matrix4f matrix4f = matrices.peek().getPositionMatrix();
         int extratimeoffset = 45;
 
-        if (entity != null) {
-            VertexConsumer vertexConsumerquad = vertexConsumers.getBuffer(RenderLayer.getSolid());
+      if (entity != null) {
 
-            Matrix4f matrix4f = matrices.peek().getPositionMatrix();
-            matrices.push();
+          matrices.push();
 
             if (entity.animtimer > 15 + extratimeoffset && entity.animtimer < 165) {
 
@@ -60,7 +59,7 @@ public class GatewayRenderer extends GeoBlockRenderer<GatewayEntity> {
             matrix4f.translate(0.5f, 0, 0.5f);
 
             if (entity.animtimer > 15 + extratimeoffset && entity.animtimer <= 25 + extratimeoffset) {
-                RenderUtil.screenshakeamount = 0.005f - ((entity.animtimer -  15) * 0.0005f);
+                RenderUtil.screenshakeamount = (entity.animtimer -  15);
                 System.out.println( RenderUtil.screenshakeamount);
             } else {
                 RenderUtil.screenshakeamount = 0;
@@ -141,10 +140,10 @@ public class GatewayRenderer extends GeoBlockRenderer<GatewayEntity> {
 
         mat4f.rotateAround(RotationAxis.POSITIVE_Y.rotationDegrees(rot), 0.5f, 0, 0.5f );
 
-        consumer.vertex(mat4f, min.x, 6, min.y).next();
-        consumer.vertex(mat4f, max.x, 6, min.y).next();
-        consumer.vertex(mat4f, max.x, 6, max.y).next();
-        consumer.vertex(mat4f, min.x, 6, max.y).next();
+        consumer.vertex(mat4f, min.x, 6, min.y).color(1f,1f,1f, 0.5f).next();
+        consumer.vertex(mat4f, max.x, 6, min.y).color(1f,1f,1f, 0.5f).next();
+        consumer.vertex(mat4f, max.x, 6, max.y).color(1f,1f,1f, 0.5f).next();
+        consumer.vertex(mat4f, min.x, 6, max.y).color(1f,1f,1f, 0.5f).next();
 
     }
 
@@ -155,10 +154,10 @@ public class GatewayRenderer extends GeoBlockRenderer<GatewayEntity> {
 
         mat4f.rotateAround(RotationAxis.NEGATIVE_Y.rotationDegrees(rot), 0.5f, 0, 0.5f );
 
-        consumer.vertex(mat4f, min.x, 6, min.y).next();
-        consumer.vertex(mat4f, max.x, 6, min.y).next();
-        consumer.vertex(mat4f, max.x, 6, max.y).next();
-        consumer.vertex(mat4f, min.x, 6, max.y).next();
+        consumer.vertex(mat4f, min.x, 6, min.y).color(1f,1f,1f, 0.5f).next();
+        consumer.vertex(mat4f, max.x, 6, min.y).color(1f,1f,1f, 0.5f).next();
+        consumer.vertex(mat4f, max.x, 6, max.y).color(1f,1f,1f, 0.5f).next();
+        consumer.vertex(mat4f, min.x, 6, max.y).color(1f,1f,1f, 0.5f).next();
 
     }
 }

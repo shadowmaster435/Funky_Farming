@@ -31,5 +31,4 @@ public class AnimatedVertex {
         return this.consumer;
     }
 
-
 }

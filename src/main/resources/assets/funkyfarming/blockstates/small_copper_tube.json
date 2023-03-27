@@ -1,0 +1,107 @@
+{
+  "multipart": [
+    {
+      "when":
+      {
+        "up": "small",
+        "down": "small"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube"
+      }
+    },
+    {
+      "when":
+      {
+        "east": "small",
+        "west": "small"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when":
+      {
+        "north": "small",
+        "south": "small"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube",
+        "x": 90
+      }
+    },
+    {
+      "when":
+      {
+        "up": "small",
+        "down": "none"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb"
+      }
+    },
+    {
+      "when":
+      {
+        "down": "small",
+        "up": "none"
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb",
+        "x": 180
+
+      }
+    },
+    {
+      "when":
+      {
+        "north": "small",
+        "south": "none"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb",
+        "x": 270
+
+      }
+    },
+    {
+      "when":
+      {
+        "south": "small",
+        "north": "none"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb",
+        "x": 90
+      }
+    },
+    {
+      "when":
+      {
+        "east": "small",
+        "west": "none"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when":
+      {
+        "west": "small",
+        "east": "none"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb",
+        "x": 90,
+        "y": 270
+      }
+    }
+  ]
+}

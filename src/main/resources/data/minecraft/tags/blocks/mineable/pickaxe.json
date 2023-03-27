@@ -5,7 +5,10 @@
     "funkyfarming:pearlstone_pillar",
     "funkyfarming:gateway_amp",
     "funkyfarming:gateway",
-    "funkyfarming:generator"
+    "funkyfarming:generator",
+    "funkyfarming:stalagpipe",
+    "funkyfarming:pylon",
+    "funkyfarming:slagate"
 
   ]
 }

@@ -35,34 +35,43 @@ public abstract class TransferUtil {
     public static List<BlockPos> getTransferPoints(World world, PylonEntity entity, int maxConnections) {
         return subTransferAlgorithm(world, entity.getNBTPosList(), entity, maxConnections, 0, new ArrayList<>());
     }
-    public static ArrayList<BlockPos> finalvalids = new ArrayList<>();
-    public static List<BlockPos> subTransferAlgorithm(World world, ArrayList<BlockPos> list, PylonEntity entity, int maxConnections, int currentConnectionDepth, ArrayList<BlockPos> subvalids) {
+    public static ArrayList<BlockPos> resultValids = new ArrayList<>();
+    public static List<BlockPos> subTransferAlgorithm(World world, ArrayList<BlockPos> list, PylonEntity entity, int maxConnections, int nextConnectionDepth, ArrayList<BlockPos> subvalids) {
         ArrayList<BlockPos> valids = new ArrayList<>(subvalids);
-        int depth = currentConnectionDepth + 1;
+        int currentConnectionDepth = nextConnectionDepth + 1;
+
         // Only clear on first iteration
-        if (currentConnectionDepth == 0) {
-            finalvalids.clear();
+        if (nextConnectionDepth == 0) {
+            resultValids.clear();
         }
-        if (depth < maxConnections) {
+
+        if (currentConnectionDepth < maxConnections) {
             for (BlockPos pos1 : list) {
                 entity.visited = true;
+
                 PylonEntity entity1 = (PylonEntity) world.getBlockEntity(pos1);
                 assert entity1 != null;
+
                 // Check for a valid io block offset opposite to provided direction then add if found
                 if (Arrays.stream(validEnergyIOBlocks).toList().contains(world.getBlockState(pos1.offset(world.getBlockState(pos1).get(Pylon.DIRECTION).getOpposite())).getBlock())) {
-                    if (!valids.contains(pos1.offset(world.getBlockState(pos1).get(Pylon.DIRECTION).getOpposite())) && !finalvalids.contains(pos1.offset(world.getBlockState(pos1).get(Pylon.DIRECTION).getOpposite()))) {
-                        finalvalids.add(pos1.offset(world.getBlockState(pos1).get(Pylon.DIRECTION).getOpposite()));
+
+                    if (!valids.contains(pos1.offset(world.getBlockState(pos1).get(Pylon.DIRECTION).getOpposite())) && !resultValids.contains(pos1.offset(world.getBlockState(pos1).get(Pylon.DIRECTION).getOpposite()))) {
+
+                        resultValids.add(pos1.offset(world.getBlockState(pos1).get(Pylon.DIRECTION).getOpposite()));
+
                         valids.add(pos1.offset(world.getBlockState(pos1).get(Pylon.DIRECTION).getOpposite()));
                     }
                 }
+
                 if (!entity1.visited) {
-                    // if transfer node not visited. iterate.
-                    subTransferAlgorithm(world, entity1.getNBTPosList(), entity1, maxConnections, depth, valids);
+                    // if transfer node not visited, rerun this code.
+                    subTransferAlgorithm(world, entity1.getNBTPosList(), entity1, maxConnections, currentConnectionDepth, valids);
                 }
             }
         }
+
         // Needed so an empty list isn't returned
-        ArrayList<BlockPos> resultedValids = new ArrayList<>(finalvalids);
+        ArrayList<BlockPos> resultedValids = new ArrayList<>(resultValids);
 
         entity.visited = true;
 

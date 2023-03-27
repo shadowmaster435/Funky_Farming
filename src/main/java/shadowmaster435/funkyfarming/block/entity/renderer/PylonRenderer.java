@@ -6,17 +6,19 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.math.*;
 import org.joml.Vector3d;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
 import shadowmaster435.funkyfarming.block.Pylon;
 import shadowmaster435.funkyfarming.block.entity.PylonEntity;
 import shadowmaster435.funkyfarming.init.FFBlocks;
+import shadowmaster435.funkyfarming.init.FFShaders;
+import shadowmaster435.funkyfarming.util.*;
 
 public class PylonRenderer implements BlockEntityRenderer<PylonEntity> {
+
+    public QuadGrid quadGrid = new QuadGrid(16);
 
     public PylonRenderer(BlockEntityRendererFactory.Context ctx) {
 
@@ -26,6 +28,7 @@ public class PylonRenderer implements BlockEntityRenderer<PylonEntity> {
 
     @Override
     public void render(PylonEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.LINE_STRIP);
         Vector3f startPosition = new Vector3f(0.5f, 0.9375f, 0.5f);
         if (entity.getWorld() != null && entity.getWorld().getBlockState(entity.getPos()).getBlock() == FFBlocks.PYLON) { // Extra Offset Start Position Calculation
@@ -43,7 +46,6 @@ public class PylonRenderer implements BlockEntityRenderer<PylonEntity> {
         RenderSystem.setShader(GameRenderer::getPositionColorProgram);
         RenderSystem.disableTexture();
         RenderSystem.disableBlend();
-
         MinecraftClient client = MinecraftClient.getInstance();
         assert client.player != null;
         assert client.cameraEntity != null;
@@ -69,7 +71,7 @@ public class PylonRenderer implements BlockEntityRenderer<PylonEntity> {
                 Vector3f endPosition = new Vector3f(-(entity.getPos().getX() - entity.getXlist().get(listIndex) + (extraendPositionOffset.x * -0.1f)), -(entity.getPos().getY() - entity.getYlist().get(listIndex) + (extraendPositionOffset.y * 0.1f)), -(entity.getPos().getZ() - entity.getZlist().get(listIndex) + (extraendPositionOffset.z * -0.1f))).add(startPosition);
 
                 matrices.push();
-                
+
                 for (int segmentIndex = 0; segmentIndex < maxSegments; ++segmentIndex) {
                     // Random Vertex Pos Offset
                     float randomOffsetX = (float) ((Math.random() - 0.5) * 0.25);
@@ -115,7 +117,9 @@ public class PylonRenderer implements BlockEntityRenderer<PylonEntity> {
                 RenderSystem.enableBlend();
                 RenderSystem.enableTexture();
                 RenderSystem.disableDepthTest();
-                
+           /*     Vector3f angeled =  MathUtil.angleTowards(new Vector3f(entity.getPos().getX(),entity.getPos().getY(),entity.getPos().getZ()),endPosition);
+                RenderUtil.angledCubeShaft(new Vector3f(-0.25f,0, -0.25f),new Vector3f(0.25f, 5, 0.25f), vertexConsumer, matrices.peek().getPositionMatrix(), ItemPylonRenderer.itemPylonBeam,MathUtil.getDistance(startPosition, endPosition), 1f, MathUtil.getDistance(startPosition, endPosition), angeled, new Vector4f(1f,1f,1f,1f));
+*/
             }
         }
     }

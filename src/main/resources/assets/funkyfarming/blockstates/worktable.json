@@ -1,0 +1,98 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "side": "left",
+        "facing": "north",
+        "animating": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/worktable_bl"
+      }
+    },
+    {
+      "when": {
+        "side": "left",
+        "facing": "east",
+        "animating": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/worktable_bl",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "side": "left",
+        "facing": "south",
+        "animating": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/worktable_bl",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "side": "left",
+        "facing": "west",
+        "animating": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/worktable_bl",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "side": "right",
+        "facing": "north",
+        "animating": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/worktable_br"
+      }
+    },
+    {
+      "when": {
+        "side": "right",
+        "facing": "east",
+        "animating": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/worktable_br",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "side": "right",
+        "facing": "south",
+        "animating": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/worktable_br",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "side": "right",
+        "facing": "west",
+        "animating": false
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/worktable_br",
+        "y": 270
+      }
+    }
+  ]
+}

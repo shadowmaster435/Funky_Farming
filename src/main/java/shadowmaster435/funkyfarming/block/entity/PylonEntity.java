@@ -1,6 +1,8 @@
 package shadowmaster435.funkyfarming.block.entity;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
@@ -16,9 +18,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PylonEntity extends BlockEntity {
-    public ArrayList<Integer> xlist = new ArrayList<>();
-    public ArrayList<Integer> ylist = new ArrayList<>();
-    public ArrayList<Integer> zlist = new ArrayList<>();
+    private ArrayList<Integer> xlist = new ArrayList<>();
+    private ArrayList<Integer> ylist = new ArrayList<>();
+    private ArrayList<Integer> zlist = new ArrayList<>();
 
 
 
@@ -82,7 +84,6 @@ public class PylonEntity extends BlockEntity {
         this.xlist = tempx;
         this.ylist = tempy;
         this.zlist = tempz;
-
     }
 
     @Nullable
@@ -118,6 +119,8 @@ public class PylonEntity extends BlockEntity {
                 }
             }
         }
+
+        world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
         if (be.visited) {
             be.visited = false;
         }

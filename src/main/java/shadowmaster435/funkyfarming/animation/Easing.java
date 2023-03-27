@@ -1,5 +1,7 @@
 package shadowmaster435.funkyfarming.animation;
 
+import org.joml.Vector3f;
+
 public interface Easing {
 
     /**
@@ -11,6 +13,15 @@ public interface Easing {
      * @return the eased value
      */
     public float ease(float t, float b, float c, float d);
+
+    public default Vector3f easePos(float t, Vector3f b, Vector3f c, float d) {
+        float easedx = ease(t, b.x, c.x, d);
+        float easedy = ease(t, b.y, c.y, d);
+        float easedz = ease(t, b.z, c.z, d);
+
+        return new Vector3f(easedx, easedy, easedz);
+    }
+
 
     /**
      * Simple linear tweening - no easing.

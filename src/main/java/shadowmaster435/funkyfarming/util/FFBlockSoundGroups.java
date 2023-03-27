@@ -46,6 +46,11 @@ public class FFBlockSoundGroups {
     public static final BlockSoundGroup EXOTIC_SOIL;
     public static final BlockSoundGroup PEARLSTONE;
 
+    public static final BlockSoundGroup METAL;
+
+    public static final BlockSoundGroup SLAGATE;
+
+
 
     public FFBlockSoundGroups(float volume, float pitch, SoundEvent breakSound, SoundEvent stepSound, SoundEvent placeSound, SoundEvent hitSound, SoundEvent fallSound) {
         this.volume = volume;
@@ -59,6 +64,8 @@ public class FFBlockSoundGroups {
     static {
         EXOTIC_SOIL = new BlockSoundGroup(1.0F, 1.0F, FFSounds.EXOTIC_SOIL_PLACE_EVENT, FFSounds.EXOTIC_SOIL_DIG_EVENT, FFSounds.EXOTIC_SOIL_PLACE_EVENT, FFSounds.EXOTIC_SOIL_DIG_EVENT, FFSounds.EXOTIC_SOIL_PLACE_EVENT);
         PEARLSTONE = new BlockSoundGroup(1.0F, 1.0F, FFSounds.PEARLSTONE_PLACE_EVENT, FFSounds.PEARLSTONE_DIG_EVENT, FFSounds.PEARLSTONE_PLACE_EVENT, FFSounds.PEARLSTONE_DIG_EVENT, FFSounds.PEARLSTONE_PLACE_EVENT);
+        METAL = new BlockSoundGroup(1.0F, 1.0F, FFSounds.METAL_PLACE_EVENT, FFSounds.METAL_DIG_EVENT, FFSounds.METAL_PLACE_EVENT, FFSounds.METAL_DIG_EVENT, FFSounds.METAL_PLACE_EVENT);
+        SLAGATE = new BlockSoundGroup(1.0F, 1.0F, FFSounds.SLAGATE_PLACE_EVENT, FFSounds.SLAGATE_DIG_EVENT, FFSounds.SLAGATE_PLACE_EVENT, FFSounds.SLAGATE_DIG_EVENT, FFSounds.SLAGATE_PLACE_EVENT);
 
     }
 }

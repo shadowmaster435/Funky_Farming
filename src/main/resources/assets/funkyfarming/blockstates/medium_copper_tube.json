@@ -1,0 +1,178 @@
+{
+  "multipart": [
+
+    {
+      "when":
+      {
+        "up": "medium",
+        "down": "medium"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/medium_copper_tube"
+      }
+    },
+    {
+      "when":
+      {
+        "east": "medium",
+        "west": "medium"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/medium_copper_tube",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when":
+      {
+        "north": "medium",
+        "south": "medium"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/medium_copper_tube",
+        "x": 90
+      }
+    },
+
+    {
+      "when":
+      {
+        "up": "medium",
+        "down": "none|small"
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/medium_copper_tube_limb"
+      }
+    },
+    {
+      "when":
+      {
+        "down": "medium",
+        "up": "none|small"
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/medium_copper_tube_limb",
+        "x": 180
+
+      }
+    },
+    {
+      "when":
+      {
+        "north": "medium",
+        "south": "none|small"
+
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/medium_copper_tube_limb",
+        "x": 270
+
+      }
+    },
+    {
+      "when":
+      {
+        "south": "medium",
+        "north": "none|small"
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/medium_copper_tube_limb",
+        "x": 90
+      }
+    },
+    {
+      "when":
+      {
+        "east": "medium",
+        "west": "none|small"
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/medium_copper_tube_limb",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when":
+      {
+        "west": "medium",
+        "east": "none|small"
+
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/medium_copper_tube_limb",
+        "x": 90,
+        "y": 270
+      }
+    },
+    {
+      "when":
+      {
+        "up": "small"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb"
+      }
+    },
+    {
+      "when":
+      {
+        "down": "small"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb",
+        "x": 180
+
+      }
+    },
+    {
+      "when":
+      {
+        "north": "small"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb",
+        "x": 270
+
+      }
+    },
+    {
+      "when":
+      {
+        "south": "small"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb",
+        "x": 90
+      }
+    },
+    {
+      "when":
+      {
+        "east": "small"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when":
+      {
+        "west": "small"
+      },
+      "apply": {
+        "model": "funkyfarming:block/tube/small_copper_tube_limb",
+        "x": 90,
+        "y": 270
+      }
+    }
+  ]
+}

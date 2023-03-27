@@ -32,19 +32,5 @@ public abstract class PlayerMixin {
 
     @Inject(at = @At("TAIL"), method = "tick")
     private void init(CallbackInfo info) {
-        if (MinecraftClient.getInstance().player != null) {
-
-            if (MinecraftClient.getInstance().mouse.wasRightButtonClicked()) {
-                if (getEquippedStack(EquipmentSlot.MAINHAND).getItem() == FFItems.GUIDE_BOOK) {
-
-                    if (GuideBook.isopen) {
-                        MinecraftClient.getInstance().mouse.unlockCursor();
-                        MinecraftClient.getInstance().player.setMovementSpeed(0);
-                    } else {
-                        MinecraftClient.getInstance().mouse.lockCursor();
-                    }
-                }
-            }
-        }
     }
 }

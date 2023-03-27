@@ -1,0 +1,27 @@
+{
+  "temperature": 0.8,
+  "downfall": 0.4,
+  "precipitation": "rain",
+  "effects": {
+    "sky_color": 8470015,
+    "fog_color": 7220456,
+    "water_color": 8895161,
+    "water_fog_color": 2505531,
+    "grass_color": 8969296,
+    "foliage_color": 8969296,
+    "grass_color_modifier": "none"
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "funkyfarming:main"
+    ]
+  },
+  "features": [
+    [
+      "minecraft:blue_ice",
+      "minecraft:basalt_pillar"
+    ]
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "funkyfarming:pearlstone"
+    },
+    {
+      "item": "minecraft:ender_pearl"
+    }
+  ],
+  "result": {
+    "item": "funkyfarming:pearlstone_pillar",
+    "count": 1
+  }
+}
