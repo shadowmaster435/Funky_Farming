@@ -48,9 +48,9 @@ public class FFBlocks {
     public static final SizedCopperTube MEDUIM_COPPER_TUBE = new SizedCopperTube(FabricBlockSettings.of(Material.METAL).sounds(FFBlockSoundGroups.METAL).hardness(0.5f).resistance(10f).requiresTool());
     public static final SizedCopperTube SMALL_COPPER_TUBE = new SizedCopperTube(FabricBlockSettings.of(Material.METAL).sounds(FFBlockSoundGroups.METAL).hardness(0.5f).resistance(10f).requiresTool());
 
-    public static final Infuser INFUSER = new Infuser(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(1f).resistance(20f).requiresTool());
+    public static final Infuser INFUSER = new Infuser(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(1f).resistance(20f).requiresTool().nonOpaque());
 
-    public static final InfusionPedastal INFUSION_PEDASTAL = new InfusionPedastal(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(1f).resistance(20f).requiresTool());
+    public static final InfusionPedastal INFUSION_PEDASTAL = new InfusionPedastal(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(1f).resistance(20f).requiresTool().nonOpaque());
 
     public static final Shearuellia SHEARUELLIA = new Shearuellia(FabricBlockSettings.of(Material.PLANT).sounds(BlockSoundGroup.STONE).hardness(0f).resistance(20f).requiresTool());
 

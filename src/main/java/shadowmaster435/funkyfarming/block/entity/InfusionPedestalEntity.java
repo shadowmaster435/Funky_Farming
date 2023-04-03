@@ -34,14 +34,12 @@ public class InfusionPedestalEntity extends BlockEntity implements ImplementedIn
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, InfusionPedestalEntity be) {
-        if (be.animating) {
-            if (be.animtimer < 30) {
-                be.animtimer++;
-            } else {
-                be.animtimer = 1;
+        try {
+            if (world.getBlockEntity(be.infuserPos) instanceof InfuserEntity entity) {
+                be.animtimer = entity.animtimer;
+                be.setAnimating(entity.animating);
             }
-        } else {
-            be.animtimer = 1;
+        } catch (Exception ignored) {
         }
     }
     @Override
@@ -76,4 +74,7 @@ public class InfusionPedestalEntity extends BlockEntity implements ImplementedIn
         animtimer = createNbt().getInt("animtimer");
     }
 
+    public void setAnimating(boolean animating) {
+        this.animating = animating;
+    }
 }

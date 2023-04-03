@@ -11,8 +11,8 @@ import java.util.List;
 
 public class InfuserRecipes {
 
-    public static ArrayList<InfuserRecipe> recipes = new ArrayList<>();
-    public static InfuserRecipe linkerRecipe = InfuserRecipe.builder()
+    public static final ArrayList<InfuserRecipe> recipes = new ArrayList<>();
+    public static final InfuserRecipe linkerRecipe = InfuserRecipe.builder()
             .item(FFItems.COPPER_GEAR, 4)
             .item(FFItems.IRON_GEAR, 4)
             .catalyst(Items.ENDER_PEARL)

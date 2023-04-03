@@ -7,10 +7,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
-import shadowmaster435.funkyfarming.init.FFBlocks;
-import shadowmaster435.funkyfarming.init.FFParticles;
-import shadowmaster435.funkyfarming.init.FFScreens;
-import shadowmaster435.funkyfarming.init.FFShaders;
+import shadowmaster435.funkyfarming.init.*;
 //import shadowmaster435.funkyfarming.init.FFScreens;
 
 @Environment(EnvType.CLIENT)
@@ -25,7 +22,6 @@ public class FunkyfarmingClient implements ClientModInitializer {
         FFBlocks.registerCT();
         FFShaders.initClient();
         FFParticles.initClient();
-
 
         keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.examplemod.spook", // The translation key of the keybinding's name

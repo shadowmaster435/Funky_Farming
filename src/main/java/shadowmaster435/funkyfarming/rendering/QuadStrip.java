@@ -119,5 +119,4 @@ public class QuadStrip {
         RenderSystem.disableDepthTest();
         RenderSystem.disableTexture();
     }
-
 }

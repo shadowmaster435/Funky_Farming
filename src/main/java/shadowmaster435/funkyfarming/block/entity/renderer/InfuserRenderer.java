@@ -8,6 +8,7 @@ import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 import org.joml.Vector3f;
@@ -67,42 +68,54 @@ public class InfuserRenderer implements BlockEntityRenderer<InfuserEntity> {
             }
             tessellator.draw();
         }*/
-        if (entity.getWorld() != null) {
+        try {
+            if (entity.getWorld() != null && entity.animating) {
 
-            float animTimer = 30 / (entity.animtimer + tickDelta);
-            Vector3f centerPos = new Vector3f(0.5f,0.25f, 0.5f);
-            Vector3f endPos = new Vector3f(0.5f,0.25f,0.5f);
+                float animTimer = (entity.animtimer + tickDelta) / 31;
 
-            Animation animation = Keyframe.builder(centerPos, endPos, Easing.BACK_OUT, 30).build();
+                if (entity.animtimer >= 29) {
+                    entity.spawnItem = true;
+                }
+                Vector3f centerPos = new Vector3f(0.5f, 1.55f, 0.5f);
+                Vector3f endPos = new Vector3f(0, 2f, 0);
+                Easing.Back easing = Easing.BACK_IN;
+                easing.setOvershoot(2.5f);
+                Animation animation = Keyframe.builder(centerPos, endPos, easing, 1).build();
+                Vector3f animPos = animation.getCurrentPos(animTimer, 0);
 
-            Vector3f animPos = animation.getCurrentPos(animTimer, 0).sub(0.5f,-0.25f,0.5f);
+                float offset = (float) (Math.sin((entity.getWorld().getTime() + tickDelta) / 8.0) / 16.0);
+                ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+                ItemStack stack = entity.getItems().get(0);
+                int lightAbove = WorldRenderer.getLightmapCoordinates(entity.getWorld(), entity.getPos().up());
 
-            double offset = Math.sin((entity.getWorld().getTime() + tickDelta) / 8.0) / 4.0;
-            matrices.push();
-            ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-            ItemStack stack = entity.getItems().get(0);
-            int lightAbove = WorldRenderer.getLightmapCoordinates(entity.getWorld(), entity.getPos().up());
-            if (!stack.isEmpty()) {
-               // matrices.translate(animPos.x, animPos.y + offset, animPos.z);
-                matrices.translate(0.5f, 0.5f + (offset/ 4), 0.5f);
-                matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees((entity.getWorld().getTime() + tickDelta) * 4));
+                if (!stack.isEmpty()) {
+                    matrices.push();
+
+                    matrices.translate(animPos.x, animPos.y + offset, animPos.z);
+                    matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees((offset * 6) * 25));
+                    matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((entity.getWorld().getTime() + tickDelta) * 4));
+                    matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((offset * 6) * 25));
+                    itemRenderer.renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
+                    matrices.pop();
+
+                }
+            }else {
+                float offset = (float) (Math.sin((entity.getWorld().getTime() + tickDelta) / 8.0) / 16.0);
+                ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+                ItemStack stack = entity.getItems().get(0);
+                int lightAbove = WorldRenderer.getLightmapCoordinates(entity.getWorld(), entity.getPos().up());
+
+                matrices.push();
+
+                matrices.translate(0.5f, offset + 1.55f, 0.5f);
+                matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees((offset * 6) * 25));
                 matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((entity.getWorld().getTime() + tickDelta) * 4));
-                matrices.multiply(RotationAxis.NEGATIVE_Z.rotationDegrees((entity.getWorld().getTime() + tickDelta) * 0.5f));
+                matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((offset * 6) * 25));
                 itemRenderer.renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
+                matrices.pop();
             }
-            matrices.pop();
+        } catch (Exception ignored) {
 
-        }
-        if (entity.getWorld() != null) {
-            List<Vector3f> list = new ArrayList<>();
-            list.add(new Vector3f(0,0,0));
-            list.add(new Vector3f(0,0.25f,0));
-            list.add(new Vector3f(0,0.5f,0));
-            list.add(new Vector3f(0,0.75f,0));
-            list.add(new Vector3f(0,1,0));
-
-            QuadStrip strip = new QuadStrip(list, 0.0625f, 0.0625f);
-            strip.render(matrices, tickDelta, entity.getWorld().getRandom(), tex, new Vector4f(0,0,1,1), 0, Direction.Axis.X);
         }
     }
 }

@@ -5,10 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class InfuserRecipe {
 
@@ -50,47 +47,48 @@ public class InfuserRecipe {
         return new InfuserRecipe(this.items, this.middleItem, new ItemStack(result, count));
     }
 
-    public boolean test(List<ItemStack> itemStacks) {
-        List<ItemStack> tempList = this.items;
-        if (!tempList.contains(this.middleItem)) {
-            tempList.add(this.middleItem);
+    public boolean test(List<ItemStack> itemStacks, ItemStack istack) {
+
+        try {
+            HashMap<Item, Integer> stackSizes = new HashMap<>();
+            HashMap<String, ItemStack> holder = new HashMap<>();
+            HashSet<Item> itemHolder = new HashSet<>();
+
+            for (ItemStack itemStack : itemStacks) {
+                itemHolder.add(itemStack.getItem());
+                stackSizes.putIfAbsent(itemStack.getItem(), 0);
+
+                if (stackSizes.containsKey(itemStack.getItem())) {
+                    stackSizes.replace(itemStack.getItem(), stackSizes.get(itemStack.getItem()) + 1);
+                }
+            }
+            for (Item item : itemHolder) {
+                if (holder.containsKey(item.getName().getString())) {
+                    holder.replace(item.getName().getString(), new ItemStack(item, stackSizes.get(item)));
+                } else {
+                    holder.put(item.getName().getString(), new ItemStack(item, stackSizes.get(item)));
+                }
+            }
+            int successCount = 0;
+            for (ItemStack stack : holder.values()) {
+                for (ItemStack itemStack : items) {
+                    if (compareStacks(stack, itemStack)) {
+                        ++successCount;
+                    }
+                }
+            }
+            return successCount == holder.size() && istack.getItem() == this.middleItem.getItem();
+        } catch (Exception e) {
+
+            return false;
         }
-        List<ItemStack> temp1 = new ArrayList<>();
-        List<ItemStack> middleRemoved = this.items;
-        Item providedmiddleItem = Items.AIR;
 
-        middleRemoved.remove(this.middleItem);
-        List<Item> previtems = new ArrayList<>();
-        previtems.add(Items.AIR);
-        for (ItemStack stack : itemStacks) {
-            List<ItemStack> tempList1 = itemStacks.stream().filter(s -> s.getItem() == stack.getItem() && s.getItem() != this.middleItem.getItem()).toList();
-            int stackSize = 0;
-            for (int i = 0; i < tempList1.size(); ++i) {
-                ++stackSize;
-            }
-            ItemStack stack1 = new ItemStack(stack.getItem(), stackSize);
-            if (!previtems.contains( stack1.getItem())) {
-                temp1.add(temp1.size() - 1, stack1.copy());
-            }
-            if (temp1.size() > 0) {
-                previtems.add(stack1.getItem());
-            }
-            if (stack.getItem() == this.middleItem.getItem()) {
-                providedmiddleItem = stack.getItem();
-            }
-        }
-        Item item = this.middleItem.getItem();
-
-        int b = 0;
-        for (int i = 0; i < temp1.size(); ++i) {
-            if (this.items.get(i).getItem() == temp1.get(i).getItem() && this.items.get(i).getCount() == temp1.get(i).getCount()) {
-                ++b;
-            }
-        }
-        System.out.println(b);
-
-
-        return providedmiddleItem == item && b >= temp1.size();
     }
+
+    private boolean compareStacks(ItemStack first, ItemStack second) {
+        return first.getItem() == second.getItem() && first.getCount() == second.getCount();
+    }
+
+
 
 }

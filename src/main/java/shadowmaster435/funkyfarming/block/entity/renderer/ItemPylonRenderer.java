@@ -31,15 +31,9 @@ public class ItemPylonRenderer implements BlockEntityRenderer<ItemPylonEntity> {
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getSolid());
         Vector3f startPosition = new Vector3f(0.5f, 0.9375f, 0.5f);
         Vector3f endPosition = new Vector3f(entity.getPos().getX(),entity.getPos().getY(),entity.getPos().getZ()).add(4,4,4);
-        System.out.println("aaaass");
 
 
-        matrices.push();
-        RenderSystem.disableBlend();
-        RenderSystem.disableTexture();
-        RenderSystem.enableDepthTest();
 
-        matrices.pop();
 
         if (entity.getWorld() != null && entity.getWorld().getBlockState(entity.getPos()).getBlock() == FFBlocks.ITEM_PYLON) { // Extra Offset Start Position Calculation
             switch (entity.getWorld().getBlockState(entity.getPos()).get(Pylon.DIRECTION)) {
@@ -52,9 +46,7 @@ public class ItemPylonRenderer implements BlockEntityRenderer<ItemPylonEntity> {
             }
         }
         delta = delta + 0.0625f;
-        RenderSystem.disableDepthTest();
-        RenderSystem.setShader(GameRenderer::getPositionTexColorProgram);
-        RenderSystem.enableTexture();
+
 
         MinecraftClient client = MinecraftClient.getInstance();
         assert client.player != null;

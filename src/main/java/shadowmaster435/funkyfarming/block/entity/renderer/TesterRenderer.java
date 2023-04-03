@@ -1,6 +1,7 @@
 package shadowmaster435.funkyfarming.block.entity.renderer;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
@@ -10,14 +11,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.apache.commons.codec.DecoderException;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 import shadowmaster435.funkyfarming.block.entity.TesterBlockEntity;
 import shadowmaster435.funkyfarming.init.FFBlocks;
+import shadowmaster435.funkyfarming.init.FFShaders;
+import shadowmaster435.funkyfarming.rendering.DynamicTexture;
 import shadowmaster435.funkyfarming.util.ExtendedDirection;
 import shadowmaster435.funkyfarming.rendering.QuadGrid;
 
+import java.nio.ByteBuffer;
 import java.util.Objects;
 
 public class TesterRenderer implements BlockEntityRenderer<TesterBlockEntity> {
@@ -25,26 +30,22 @@ public class TesterRenderer implements BlockEntityRenderer<TesterBlockEntity> {
 
     public static final Identifier tex = new Identifier("funkyfarming:textures/block/ct_test.png");
 
-    public TesterRenderer(BlockEntityRendererFactory.Context ctx) {
+    public final DynamicTexture dyn = new DynamicTexture(16, 16, 20, 16);;
 
+    public TesterRenderer(BlockEntityRendererFactory.Context ctx) {
     }
 
     public final QuadGrid grid = new QuadGrid(16);
     @Override
     public void render(TesterBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();
-        if (entity.getWorld() != null) {
-            double offset = Math.sin((entity.getWorld().getTime() * 4 + tickDelta) / 8.0) / 2;
-            double offsetcos = Math.tan((entity.getWorld().getTime() + tickDelta) / 8.0);
-
-            Vec3d animPos = new Vec3d(Math.atan(offsetcos), 0, offset );
-            Vector3f rgb = new Vector3f((float) offset, (float) (offset / 4), (float) -offset);
-            grid.addQuadFromPos(animPos, new Vector3f(1f, 1f, 1f), 80);
-
-            grid.renderBlockEntity(entity.getPos(), matrices, tickDelta, vertexConsumers);
+        assert MinecraftClient.getInstance().world != null;
+        if (!entity.isRemoved()) {
+            this.dyn.setTick((int) MinecraftClient.getInstance().world.getTime());
+            this.dyn.renderQuad(matrices, entity.getPos());
+        } else {
+            this.dyn.remove();
         }
-        grid.tick();
-
         matrices.pop();
     }
     

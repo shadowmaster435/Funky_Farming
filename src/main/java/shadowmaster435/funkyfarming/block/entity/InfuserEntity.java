@@ -3,6 +3,7 @@ package shadowmaster435.funkyfarming.block.entity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -19,15 +20,18 @@ import shadowmaster435.funkyfarming.util.InfuserRecipe;
 import shadowmaster435.funkyfarming.util.InfuserRecipes;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class InfuserEntity extends BlockEntity implements ImplementedInventory {
 
     public List<BlockPos> posList = new ArrayList<>();
 
+    public boolean spawnItem = false;
+
     public boolean animating = false;
 
-    public boolean stopAnim = false;
 
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(1, ItemStack.EMPTY);
 
@@ -72,78 +76,64 @@ public class InfuserEntity extends BlockEntity implements ImplementedInventory {
     public static void tick(World world, BlockPos pos, BlockState state, InfuserEntity be) {
 
         if (be.checkTimer < 20) {
+
             ++be.checkTimer;
-        } else {
-            be.checkForPedestals(world, pos);
-            List<ItemStack> stacks = be.checkPedestalInventories(world, be);
-
-
-            for (InfuserRecipe recipe : InfuserRecipes.recipes) {
-                if (recipe.test(stacks)) {
-                    be.animating = true;
-                    for (BlockPos pos1 : be.posList) {
-                        if (world.getBlockEntity(pos1) instanceof InfusionPedestalEntity entity) {
-                            entity.getItems().get(0).decrement(1);
-                            entity.markDirty();
-                        }
-                    }
-                    for (int i = 0; i < be.getItems().size(); ++i) {
-                        if (recipe.middleItem == (be.getItems().get(i))) {
-                            if (be.getItems().get(i).getCount() > 0) {
-                                be.getItems().get(i).decrement(1);
-                                be.markDirty();
-                            }
-                        }
-                    }
-                }
-            }
-            be.checkTimer = 0;
-        }
-        if (be.animating) {
-        if (be.animtimer < 30) {
-            ++be.animtimer;
-        }
-            be.animating = false;
-            be.animtimer = 0;
-        }
-        for (BlockPos pos1 : be.posList) {
-            InfusionPedestalEntity entity = (InfusionPedestalEntity) world.getBlockEntity(pos1);
-            if (entity != null) {
-                entity.animating = false;
-            }
-        }
-
-        if (be.animating) {
-            if (be.animtimer < 30) {
-                ++be.animtimer;
-
-            }/* else {
+            } else {
                 be.checkForPedestals(world, pos);
-                List<ItemStack> stacks = be.checkPedestalInventories(world, be);
+                List<ItemStack> stacks = new ArrayList<>(be.checkPedestalInventories(world, be));
+
                 for (InfuserRecipe recipe : InfuserRecipes.recipes) {
-                    if (recipe.test(stacks)) {
+                    if (recipe.test(stacks, be.getItems().get(0))) {
                         be.animating = true;
-                        for (BlockPos pos1 : be.posList) {
-                            if (world.getBlockEntity(pos1) instanceof InfusionPedestalEntity entity) {
-                                entity.getItems().get(0).decrement(1);
-                            }
-                        }
+
                         for (int i = 0; i < be.getItems().size(); ++i) {
                             if (recipe.middleItem == (be.getItems().get(i))) {
                                 if (be.getItems().get(i).getCount() > 0) {
-                                    be.getItems().get(i).decrement(1);
+                                    be.animating = true;
                                 }
                             }
                         }
                     }
                 }
-                be.animtimer = 0;
-                if (be.animating) {
-                    be.animating = false;
-                }
+                be.checkTimer = 0;
             }
-*/        }
+            if (be.animating) {
+                if (be.animtimer < 30) {
+                    ++be.animtimer;
+                } else {
+                        be.checkForPedestals(world, pos);
+                        List<ItemStack> stacks = new ArrayList<>(be.checkPedestalInventories(world, be));
+
+                        for (InfuserRecipe recipe : InfuserRecipes.recipes) {
+                            if (recipe.test(stacks, be.getItems().get(0))) {
+
+
+                                for (BlockPos pos1 : be.posList) {
+                                    if (world.getBlockEntity(pos1) instanceof InfusionPedestalEntity entity) {
+                                        entity.getItems().set(0, ItemStack.EMPTY);
+                                    }
+                                }
+                                be.getItems().set(0, ItemStack.EMPTY);
+                                ItemEntity entity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 3.25, pos.getZ() + 0.5, recipe.result);
+                                entity.setVelocity(0,0.25,0);
+                                world.spawnEntity(entity);
+                                be.setAnimating(false);
+                                be.animtimer = 0;
+
+                            }
+                        }
+                    }
+            } else {
+                be.animtimer = 0;
+
+            }
+
     }
+
+    public void setAnimating(boolean animating) {
+        this.animating = animating;
+    }
+
     public void checkForPedestals(World world, BlockPos pos) {
 
         this.posList.clear();
@@ -162,14 +152,17 @@ public class InfuserEntity extends BlockEntity implements ImplementedInventory {
     }
 
     public List<ItemStack> checkPedestalInventories(World world, InfuserEntity entity) {
-        List<ItemStack> result = new ArrayList<>();
-        for (BlockPos pos : entity.posList) {
-            if (world.getBlockState(pos).getBlock() == FFBlocks.INFUSION_PEDASTAL && world.getBlockEntity(pos) instanceof InfusionPedestalEntity pedestalEntity) {
-                result.add(pedestalEntity.getItems().get(0));
+        List<ItemStack> holder2 = new ArrayList<>();
+
+            for (BlockPos pos : entity.posList) {
+                if (world.getBlockState(pos).getBlock() == FFBlocks.INFUSION_PEDASTAL && world.getBlockEntity(pos) instanceof InfusionPedestalEntity pedestalEntity) {
+                    ItemStack pedestalStack = pedestalEntity.getItems().get(0);
+
+                    holder2.add(pedestalStack);
+                }
             }
-        }
-        result.addAll(entity.getItems());
-        return result;
+        return holder2;
+
     }
 
 

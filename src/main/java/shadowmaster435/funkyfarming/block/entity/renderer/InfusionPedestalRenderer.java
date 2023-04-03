@@ -8,11 +8,14 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.noise.PerlinNoiseSampler;
 import net.minecraft.util.math.random.Random;
 import org.apache.commons.codec.DecoderException;
 import org.joml.Vector3f;
+import org.joml.Vector3fc;
+import org.joml.Vector3i;
 import shadowmaster435.funkyfarming.animation.Animation;
 import shadowmaster435.funkyfarming.animation.Easing;
 import shadowmaster435.funkyfarming.animation.Keyframe;
@@ -25,6 +28,7 @@ import java.util.Objects;
 public class InfusionPedestalRenderer implements BlockEntityRenderer<InfusionPedestalEntity> {
 
     public int ticks = 0;
+
 
     @Override
     public void render(InfusionPedestalEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
@@ -53,39 +57,65 @@ public class InfusionPedestalRenderer implements BlockEntityRenderer<InfusionPed
 
 
             //  grid.renderBlockEntity(entity.getPos(), matrices, tickDelta, vertexConsumers);
-            DynamicTexture dynamicTexture = new DynamicTexture(16, 16);
+/*            DynamicTexture dynamicTexture = new DynamicTexture(16, 16);
             try {
                 dynamicTexture.renderQuad(matrices);
             } catch (DecoderException e) {
                 throw new RuntimeException(e);
-            }
+            }*/
         }
-        if (entity.getWorld() != null && entity.infuserPos != null) {
+        try {
+            if (entity.getWorld() != null && entity.infuserPos != null && entity.animating) {
+                Random random = Random.create((entity.getPos().getX() + entity.getPos().getY() + entity.getPos().getZ()));
+                int animOffset = random.nextBetween(-12000, 12000);
+                float animTimer = (entity.animtimer + tickDelta) / 31;
+                Vector3f centerPos = new Vector3f(0.5f, 1.55f, 0.5f);
+                BlockPos sub = entity.getPos().subtract(entity.infuserPos);
+                Vector3f endPos = new Vector3f(-sub.getX(), -sub.getY() + 2, -sub.getZ());
+                Easing.Back easing = Easing.BACK_IN;
+                easing.setOvershoot(2.5f);
+                Animation animation = Keyframe.builder(centerPos, endPos, easing, 1).build();
+                Vector3f animPos = animation.getCurrentPos(animTimer, 0);
 
-            float animTimer = (entity.animtimer + tickDelta) / 30;
-            Vector3f centerPos = new Vector3f(0.5f, 0.25f, 0.5f);
-            Vector3f endPos = new Vector3f(0.5f, 0.25f, 0.5f);
-            Animation animation = Keyframe.builder(centerPos, endPos, Easing.BACK_OUT, 30).build();
+                float offset = (float) (Math.sin((entity.getWorld().getTime() + tickDelta) / 8.0) / 16.0);
+                ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+                ItemStack stack = entity.getItems().get(0);
+                int lightAbove = WorldRenderer.getLightmapCoordinates(entity.getWorld(), entity.getPos().up());
 
-            Vector3f animPos = animation.getCurrentPos(animTimer, 0).sub(0.5f,-0.75f,0.5f);
+                if (!stack.isEmpty()) {
+                    matrices.push();
 
-            float offset = (float) (Math.sin((entity.getWorld().getTime() + tickDelta) / 8.0) / 4.0);
-            ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-            ItemStack stack = entity.getItems().get(0);
-            int lightAbove = WorldRenderer.getLightmapCoordinates(entity.getWorld(), entity.getPos().up());
+                    matrices.translate(animPos.x, animPos.y + offset, animPos.z);
+                    matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees((offset * 6) * 25));
+                    matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((entity.getWorld().getTime() + animOffset + tickDelta) * 4));
+                    matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((offset * 6) * 25));
+                    itemRenderer.renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
+                    matrices.pop();
 
-            if (!stack.isEmpty()) {
-                matrices.push();
+                }
+            } else {
+                ItemStack stack = entity.getItems().get(0);
 
-                matrices.translate(animPos.x, animPos.y + offset, animPos.z);
-                matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees((entity.getWorld().getTime() + tickDelta) * 4));
-                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((entity.getWorld().getTime() + tickDelta) * 4));
-                matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((entity.getWorld().getTime() + tickDelta) * 4));
-                itemRenderer.renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
-                matrices.pop();
+                if (entity.getWorld() != null && !stack.isEmpty()) {
+                    Random random = Random.create((entity.getPos().getX() + entity.getPos().getY() + entity.getPos().getZ()));
+                    int animOffset = random.nextBetween(-12000, 12000);
+                    float offset = (float) (Math.sin((entity.getWorld().getTime() + animOffset + tickDelta) / 8.0) / 16.0);
+                    ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+                    int lightAbove = WorldRenderer.getLightmapCoordinates(entity.getWorld(), entity.getPos().up());
 
+                    matrices.push();
+
+                    matrices.translate(0.5f, offset + 1.55f, 0.5f);
+                    matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees((offset * 6) * 25));
+                    matrices.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees((entity.getWorld().getTime() + animOffset + tickDelta) * 4));
+                    matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((offset * 6) * 25));
+                    itemRenderer.renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
+                    matrices.pop();
+                }
             }
+        } catch (Exception ignored) {
 
         }
+
     }
 }
